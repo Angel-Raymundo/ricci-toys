@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Gamepad2 } from "lucide-react";
+import { Gamepad2, Menu, X } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   const isActive = (path: string) => {
     return pathname === path
@@ -23,7 +25,16 @@ export default function Navbar() {
             <span className="text-3xl font-bold text-white">RicciToys</span>
           </Link>
 
-          <div className="flex items-center space-x-8">
+          {/* Botón hamburguesa para móviles */}
+          <button
+            className="md:hidden text-white focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
+          {/* Menú para desktop (oculto en móviles) */}
+          <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/"
               className={`transition-colors text-white text-xl ${isActive(
@@ -50,6 +61,39 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
+
+        {/* Menú móvil (solo visible cuando isOpen es true) */}
+        {isOpen && (
+          <div className="md:hidden pb-4 space-y-4">
+            <Link
+              href="/"
+              className={`block transition-colors text-white text-xl ${isActive(
+                "/"
+              )}`}
+              onClick={() => setIsOpen(false)}
+            >
+              Inicio
+            </Link>
+            <Link
+              href="/productos"
+              className={`block transition-colors text-white text-xl ${isActive(
+                "/productos"
+              )}`}
+              onClick={() => setIsOpen(false)}
+            >
+              Productos
+            </Link>
+            <Link
+              href="/mas"
+              className={`block transition-colors text-white text-xl ${isActive(
+                "/mas"
+              )}`}
+              onClick={() => setIsOpen(false)}
+            >
+              Más
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );
