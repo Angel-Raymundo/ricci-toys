@@ -36,16 +36,16 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-18 px-15 mx-0">
-      <div className="grid lg:grid-cols-2 gap-8 items-start">
+    <div className="container mx-auto px-4 py-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         {/* Lado izquierdo - Presentación */}
-        <div className="space-y-6">
+        <div className="space-y-6 w-full">
           <Card>
-            <CardContent className="p-8">
-              <h1 className="text-4xl font-bold text-primary mb-6">
+            <CardContent className="p-4 md:p-8">
+              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 md:mb-6 text-center lg:text-left">
                 ¡BIENVENIDOS A RICCI TOYS!
               </h1>
-              <div className="space-y-4 text-lg text-muted-foreground">
+              <div className="space-y-4 text-base md:text-lg text-muted-foreground">
                 <p>
                   En RICCI TOYS creemos que la imaginación no tiene limites y
                   apoyamos sueños de plasmar ideas a objetos físicos que ahora
@@ -61,21 +61,23 @@ export default function HomePage() {
                   Ven y conoce mas de los productos que ofrecemos. Esperamos que
                   todo sea de tu agrado!!
                 </p>
-                <p>@lefemew // @ang_raymundo</p>
+                <p className="text-center lg:text-left">
+                  @lefemew // @ang_raymundo
+                </p>
               </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Lado derecho - Productos recientes */}
-        <div className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">
+        <div className="space-y-6 w-full">
+          <h2 className="text-2xl md:text-3xl font-bold text-center">
             Productos Más Recientes
           </h2>
 
           <Card className="overflow-hidden">
             <CardContent className="p-0">
-              <div className="relative h-80 w-full">
+              <div className="relative h-64 md:h-80 w-full">
                 <Image
                   src={
                     featuredProducts[currentImageIndex].image ||
@@ -84,9 +86,10 @@ export default function HomePage() {
                   alt={featuredProducts[currentImageIndex].name}
                   fill
                   className="object-cover transition-opacity duration-500"
+                  priority
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4">
-                  <h3 className="text-xl font-semibold">
+                  <h3 className="text-lg md:text-xl font-semibold text-center">
                     {featuredProducts[currentImageIndex].name}
                   </h3>
                 </div>
